@@ -1,0 +1,147 @@
+﻿<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<link  rel="stylesheet" type="text/css" href="css/index.css">
+
+<body>
+<DIV id="bodybg"></DIV>
+
+
+
+
+<div id="title">
+    <div style="width:1300px;margin: auto">
+    <div id="about1">
+        <b>关于链游大师社区</b><hr size="1">
+        <span class="titleContent">
+        链游大师社区是一个专门为区块链提供游戏制作工具和输出游戏的社区，<br>
+        会提供一系列开发者/设计人员使用的游戏制作工具、游戏制作者来完善区块链游戏生态。<br>
+        </span>
+        <div style="position: relative;left:150px"><img src="img/t3.png" class="imgEffect ease" /></div>
+        <div style="position: relative;left:100px;top:-100px"><img src="img/t4.png" class="imgEffect ease" /></div>
+    </div>
+
+
+    <div id="about2">
+        <img src="img/t1.png" class="imgEffect ease" />
+        <br>
+        <div style="text-align: right"><b>关于DGM</b></div><hr size="1">
+        <span class="titleContent">
+        DGM全称为distributed game maker token，是链游大师社区发行的一种虚拟货币，该虚拟货币来源于BANK协议，即社区创建初始并未拥有任何的虚拟货币，一切由社区的支持者购买、售出来决定其价值。其中售出时将会留下5%用于社区的发展和建设。<p>
+        DGM分红计划：持有DGM的支持者将享有链游大师社区一切产品（如游戏制作工具、游戏）的盈利分红，
+        经由产品的合约自动流入至DGM合约中完成分红。
+        </span>
+    </div>
+    </div>
+</div>
+
+<div class="blank" style="height:10px"></div>
+
+<div id="kx">
+    <div style="margin: auto;width: 1300px;padding-top:10px">
+    <img src="img/k.png" width="1300"/>
+    </div>
+</div>
+
+<div class="blank" style="height:10px"></div>
+<div id="projectList">
+    <div class="centerContent">
+        <div class="projectPro">
+            <div class="projectListImgDiv">
+               <img src="img/p1.png" class="plist imgEffect2 ease">
+               <div style="padding-top: 10px">Canvas Builder<br>孵化中...75%</div>
+            </div>
+            <HR SIZE="1" style="width: 380px;">
+            <div class="projectListContent">一款由专业开发者使用的IDE<BR>（Integrated Development Environment）<BR>
+                -- 可很方便的开发游戏前端、后端、合约、上链等<BR>
+                -- 可支持任何WEB库：Laya、Cocos、Egret、Web3.js等<BR>
+                -- 可支持Node.js<BR>
+                -- 可一键上传至社区平台，加入DGM分红计划<BR>
+                -- 可一键发布各种平台：<BR>&nbsp;&nbsp;&nbsp;&nbsp;Windows、MacOS、Android、Web、IOS、微信<BR>
+                -- 提供云模板库，任何开发者都可以开发游戏模板、游戏编辑器来完善工具生态
+            </div>
+        </div>
+        <div class="blankH"></div>
+        <div class="projectPro">
+            <div class="projectListImgDiv">
+                <img src="img/p2.png" class="plist imgEffect2 ease">
+                <div style="padding-top: 10px">神火游戏制作大师<br>孵化中...10%</div>
+            </div>
+            <HR SIZE="1" style="width: 380px;">
+            <div class="projectListContent">由社区初期的核心开发团队制作的一款可视化游戏制作工具。<BR>
+                -- 支持多人在线网络游戏，同时也有单机游戏版本。<BR>
+                -- 可视化操作，无需编程，同时也可编程。<BR>
+                -- 无需编写合约，自动集成货币、物品上链、交易、拍卖行<BR>
+                -- 高级开发人员可通过编程来扩展制作工具本身。<BR>
+                -- 制作者可一键上传至社区平台，加入分红计划。
+            </div>
+        </div>
+        <div class="blankH"></div>
+        <div class="projectPro">789</div>
+    </div>
+</div>
+
+
+
+<div id="mainMenuDiv">
+    <div id="mainMenuFont">
+        <div class="mainmenu ease">链游大师</div>
+        <div class="mainmenu ease">DGM·K线</div>
+        <div class="mainmenu ease">社区产品</div>
+        <div class="mainmenu ease">节点</div>
+        <div class="mainmenu2 ease2" onclick="onbuy()">购买DGM</div>
+        <div class="mainmenu2 ease2" onclick="onsell()">售出DGM</div>
+        <div class="loginMsg" id="myAddress">未登录</div>
+        <div class="loginMsg" id="myToken"></div>
+    </div>
+</div>
+
+</body>
+</html>
+<script type="text/javascript" src="js/myweb3.js?r=1533218540848" ></script>
+<script>
+    function onbuy(){
+             var v = parseFloat(prompt("请输入买入值"));
+             if (v) {
+                 Pay.buy(v.toString(), new Callback(function () {
+                     alert("购买成功");
+
+                 }, this));
+             }
+    }
+    function onsell(){
+        var v = parseFloat(prompt("请输入卖出值"));
+        if (v) {
+            var v = parseFloat(prompt("请输入卖出值"));
+            if (v) {
+                Pay.sell(v.toString(), new Callback(function () {
+                    alert("卖出成功");
+                }, this))
+            }
+        }
+    }
+    function searchTest(){
+        if(!Pay.myAddress){
+            document.getElementById("myToken").innerHTML = "";
+            return;
+        }
+        Pay.myTokens(new Callback(function (token) {
+            document.getElementById("myToken").innerHTML = "(Token:"+token+")";
+            setInterval(searchTest,1000);
+        }, this));
+    }
+    Pay.init(new Callback(function (myAccount) {
+        if(myAccount){
+            document.getElementById("myAddress").innerHTML = Pay.myAddress.substr(0,8)+"..."+Pay.myAddress.substr(36);
+            document.getElementById("myToken").innerHTML = "(Token:查询中)";
+            searchTest();
+        }
+        else{
+            document.getElementById("myAddress").innerHTML = "未登录";
+            document.getElementById("myToken").innerHTML = "";
+        }
+    }, this));
+</script>
