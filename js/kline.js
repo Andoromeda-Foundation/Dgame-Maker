@@ -78,7 +78,7 @@ function kLine(xData,yData) {
                 },
                 data:yData
                 ,
-                markPoint : {
+             /*   markPoint : {
                     symbol: 'star',
                     //symbolSize:20,
                     itemStyle:{
@@ -87,7 +87,7 @@ function kLine(xData,yData) {
                     data : [
                         {name : '最高', value : 2444.8, xAxis: '2013/2/18', yAxis: 2466}
                     ]
-                }
+                }*/
             }
         ]
     };

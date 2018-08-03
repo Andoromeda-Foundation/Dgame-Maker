@@ -236,47 +236,52 @@
 <script src="lib/echarts/echarts.js"></script>
 <script src="lib/echarts/macarons.js"></script>
 <script src="lib/jquery.js"></script>
+<script src="lib/jquery.timers.js"></script>
 <script src="js/kline.js"></script>
 <script>
 
 
-
-jQuery.getJSON("http://dasdaq-webapi.chinacloudsites.cn/api/Candlestick/null",function (data) {
-    console.log(data)
-    if(data){
-        if(data.code=="200"){
-            data = data.data.values;
-            var yData=[ // 开盘，收盘，最低，最高
-                {
-                    // value:[2320.26,2302.6,2287.3,2362.94],
-                    itemStyle: {
-                        normal: {
-                            color0: 'blue',         // 阴线填充颜色
-                            lineStyle: {
-                                width: 3,
-                                color0: 'blue'      // 阴线边框颜色
+    getData()
+    function getData() {
+    jQuery.getJSON("http://dasdaq-webapi.chinacloudsites.cn/api/Candlestick/null",function (data) {
+        console.log(data)
+        if(data){
+            if(data.code=="200"){
+                data = data.data.values;
+                var yData=[ // 开盘，收盘，最低，最高
+                    {
+                        // value:[2320.26,2302.6,2287.3,2362.94],
+                        itemStyle: {
+                            normal: {
+                                color0: 'blue',         // 阴线填充颜色
+                                lineStyle: {
+                                    width: 3,
+                                    color0: 'blue'      // 阴线边框颜色
+                                }
+                            },
+                            emphasis: {
+                                color0: 'blue'          // 阴线填充颜色
                             }
-                        },
-                        emphasis: {
-                            color0: 'blue'          // 阴线填充颜色
                         }
-                    }
-                }];
-            var xData=[];
-            for(var i=0;i<data.length;i++){
-                xData.push(FormTime(data[i].time))
-                var item=[data[i].opening,data[i].closing,data[i].min,data[i].max] // 开盘，收盘，最低，最高
-                yData.push(item);
-            }
-            kLine(xData,yData);
-        }else {
-            alert("Service error")
-        }
+                    }];
+                var xData=[];
+                for(var i=0;i<data.length;i++){
+                    xData.push(FormTime(data[i].time))
+                    var item=[data[i].opening,data[i].closing,data[i].min,data[i].max] // 开盘，收盘，最低，最高
+                    yData.push(item);
+                }
 
-    }else {
-        alert("Contract the manager")
+                kLine(xData,yData);
+            }else {
+                alert("Service error")
+            }
+
+        }else {
+            alert("Contract the manager")
+        }
+    })
     }
-})
+    jQuery(this).everyTime('60s',getData);
     function $(n){return document.getElementById(n);}
     function onbuy(){
              var v = parseFloat(prompt("请输入买入值"));
