@@ -41,9 +41,8 @@
 
 
 <div id="kx">
-    <div style="margin: auto;width: 1300px;padding-top:10px;">
+    <div id="kId" style="margin: auto;width: 1300px;padding-top:10px;">
         <!--<img src="img/k.png" width="1300"/>-->
-        <div id="kId" style="height: 500px"></div>
     </div>
 </div>
 
@@ -242,7 +241,7 @@
 
 
     getData()
-    function getData() {
+    function getData() {//dgm
     jQuery.getJSON("http://dasdaq-webapi.chinacloudsites.cn/api/Candlestick/null",function (data) {
 //        console.log(data)
         if(data){
@@ -250,7 +249,7 @@
                 data = data.data.values;
                 var yData=[ // 开盘，收盘，最低，最高
                     {
-                        // value:[2320.26,2302.6,2287.3,2362.94],
+//                         value:[2320.26,2302.6,2287.3,2362.94],
                         itemStyle: {
                             normal: {
                                 color0: 'blue',         // 阴线填充颜色
