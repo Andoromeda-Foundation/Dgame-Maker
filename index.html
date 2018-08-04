@@ -241,7 +241,7 @@
 
     getData()
     function getData() {//dgm
-    jQuery.getJSON("http://dasdaq-webapi.chinacloudsites.cn/api/Candlestick/null",function (data) {
+    jQuery.getJSON("http://dasdaq-webapi.chinacloudsites.cn/api/Candlestick/dgm",function (data) {
 //        console.log(data)
         if(data){
             if(data.code=="200"){
@@ -268,7 +268,6 @@
                     var item=[data[i].opening,data[i].closing,data[i].min,data[i].max] // 开盘，收盘，最低，最高
                     yData.push(item);
                 }
-
                 kLine(xData,yData);
             }else {
                 alert("Service error")

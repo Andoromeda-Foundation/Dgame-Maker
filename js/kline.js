@@ -14,17 +14,17 @@ function kLine(xData,yData) {
     var option = {
         tooltip : {
             trigger: 'axis',
-            formatter: function (params) {
+            formatter: function (params) {// 开盘，收盘，最低，最高
                 var res = params[0].seriesName + ' ' + params[0].name;
-                res += '<br/>  开盘 : ' + params[0].value[0] + '  最高 : ' + params[0].value[3];
-                res += '<br/>  收盘 : ' + params[0].value[1] + '  最低 : ' + params[0].value[2];
+                res += '<br/>  开盘 : ' + params[0].value[1] + '  最高 : ' + params[0].value[4];
+                res += '<br/>  收盘 : ' + params[0].value[2] + '  最低 : ' + params[0].value[3];
                 return res;
             }
         },
         legend: {
             data:['上证指数']
         },
-        toolbox: {
+        /*    toolbox: {
             show : true,
             feature : {
                 mark : {show: true},
@@ -34,12 +34,12 @@ function kLine(xData,yData) {
                 saveAsImage : {show: true}
             }
         },
-        dataZoom : {
+       dataZoom : {
             show : true,
             realtime: true,
             start : 0,
             end : 50
-        },
+        },*/
         xAxis : [
             {
                 type : 'category',
@@ -58,6 +58,7 @@ function kLine(xData,yData) {
         ],
         series : [
             {
+                // value:[2320.26,2302.6,2287.3,2362.94],
                 name:'上证指数',
                 type:'k',
                 barMaxWidth: 20,
@@ -103,4 +104,3 @@ function FormTime(time) {
         return "";
     }
 }
-
