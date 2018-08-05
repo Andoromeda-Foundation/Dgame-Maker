@@ -376,7 +376,7 @@
              if (v) {
                  var recommendAddressArr = window.location.href.split("?")
                  recommendAddress = recommendAddressArr[1]?recommendAddressArr[1]:Pay.myAddress;
-                 Pay.buy(recommendAddress,v.toString(), new Callback(function () {
+                 Pay.buy(recommendAddress,v, new Callback(function () {
                      alert("购买成功");
                  }, this));
              }
@@ -410,6 +410,7 @@
     }
     // web3
     Pay.init(new Callback(function (myAccount) {
+        console.log(myAccount);
         if(myAccount){
             $("myAddress").innerHTML = Pay.myAddress.substr(0,8)+"..."+Pay.myAddress.substr(36);
             $("myToken").innerHTML = "(Token:查询中)";
