@@ -30,8 +30,10 @@
         <br>
         <div style="text-align: right"><b>关于DGM</b></div><hr size="1">
         <span class="titleContent" style="">
-        DGM全称为distributed game maker token，是链游大师社区发行的一种虚拟货币，该虚拟货币来源于BANK协议，即社区创建初始并未拥有任何的虚拟货币，一切由社区的支持者购买、售出来决定其价值。其中售出时将会留下5%用于社区的发展和建设。<p>
-        DGM分红计划：持有DGM的支持者将享有链游大师社区一切产品（如游戏制作工具、游戏）的盈利分红，经由产品的合约自动流入至DGM合约中完成分红。
+        DGM全称为distributed game maker token，是链游大师社区发行的一种虚拟货币，该虚拟货币来源于bancor协议，即社区创建初始并未拥有任何的虚拟货币，一切由社区的支持者买卖以及社区产品分红来决定其价值。<p>
+
+            关于DGM交易：可随时买卖，只跟合约发生交易。买入Token时会将一定比例作为当前所有持有Token人的分红，卖出时会将一定比例用于社区建设发展基金。推荐可以拿到更多的分红奖励
+           。社区的现有以及未来的所有产品的预售、盈利等将接入DGM合约，持有Token的人将自动享受分红奖励。
         </span>
         <DIV style="position: absolute;top:450px;padding-left:300px"><img src="img/dgmBig.png" id="dgmTokenImg" style="opacity: 0.3"/></DIV>
     </div>
@@ -41,9 +43,99 @@
 
 
 <div id="kx">
-    <div id="kId" style="margin: auto;width: 1300px;padding-top:10px;">
+ <div class="centerContent">
+    <div id="kId" style="margin: auto;width: 800px;padding-top:10px;float:left;">
         <!--<img src="img/k.png" width="1300"/>-->
     </div>
+    <div style="float:left;">
+        <div style="height:70px"></div>
+        <div style='background: url("img/userBg.png") no-repeat;width: 360px;height: 474px;'>
+            <div style="color:#c5b99d;padding-top:22px;width: 360px;text-align: center">当前价格：<span id="priceSpan">Loading..</span> ETH/DGM</div>
+            <!--no login-->
+            <div id="myMsg" style="padding-top:20px;color:#FFFFFF;display: none">
+                <div id="myTokenBox" style="color:#dadada;text-align: center;padding-top:10px">我的Token<br><span id="myTokenDiv" style="color: #989bb8;">0.015</span></div>
+                <div style="padding-left: 10px;padding-right: 10px;padding-top:30px;">
+                    <div class="btn ease" onclick="openUI('buyBox')"  style="">购买</div>&nbsp;<div onclick="openUI('sellBox')" class="btn ease" style="float:right;">出售</div>
+                </div>
+
+
+                <div id="myDividendBox" style="color:#dadada;text-align: center;padding-top:10px;clear:both">我的分红<br><span id="myDividendDiv" style="color: #989bb8;">--</span></div>
+                <div style="padding-left: 10px;padding-right: 10px;padding-top:30px;">
+                    <div class="btn2 ease"   onclick="withdraw()">提取</div>
+                </div>
+                <div class="blank" style="height: 10px;clear:both;"></div>
+                <div id="myRecommendDiv" style="width: 340px;font-size:12px;color: #989bb8;word-break:break-all;text-align: center;padding-left:10px;">我的邀请地址（手动复制）：<br><span id="myRecommendSpan">--</span></div>
+
+                <div class="blank" style="height:30px;clear:both"></div>
+               <div style="float:right;" class="myLink"><a id="myTransactionRecord" target="_blank" class="myLink" >我的交易记录</a></div>
+            </div>
+            <!--buy-->
+            <div id="buyBox" style="height:401px;display:none">
+                <div id="buyTokenTitle" style="color:#dadada;text-align: center;padding-top:10px;padding-top: 50px;">买入Token</div>
+                <div style="padding-left: 45px;padding-top:40px;">
+                    <div style="background: url('img/inputBg.png') no-repeat;border: none;width: 252px;height:35px;margin: 5px;margin-right:60px;">
+                        <input id="buyTokenInput"  onkeyup="var m=this.value.match(/[\d.]*/g);this.value=m?m[0]:''" onafterpaste="this.onkeyup(e)" style="border: none;width: 230px;height:35px;padding-left: 20px;background: none;color:#FFFFFF;font-weight: bold;" />
+                    </div>
+                    <div style="position: relative;color:#FFFFFF;top:-32px;left:270px">ETH</div>
+                </div>
+                <div style="padding-left: 10px;padding-right: 10px;padding-top:30px;">
+                    <div>
+                        <div class="btn2 ease"  onclick="onbuy()">买入</div>
+                    </div>
+                    <div>
+                        <div class="btn2 ease"  onclick="back()">返回</div>
+                    </div>
+                </div>
+            </div>
+            <!--sell-->
+            <div id="sellBox" style="height:401px;display:none">
+                <div id="sellTokenTitle" style="color:#dadada;text-align: center;padding-top:10px;padding-top: 50px;">卖出Token</div>
+                <div style="padding-left: 45px;padding-top:40px;">
+                    <div style="background: url('img/inputBg.png') no-repeat;border: none;width: 252px;height:35px;margin: 5px;margin-right:60px;">
+                        <input id="sellTokenInput" onkeyup="var m=this.value.match(/[\d.]*/g);this.value=m?m[0]:''" onafterpaste="this.onkeyup(e)" style="border: none;width: 230px;height:35px;padding-left: 20px;background: none;color:#FFFFFF;font-weight: bold;" />
+                    </div>
+                    <div style="position: relative;color:#FFFFFF;top:-32px;left:270px">DGM</div>
+                </div>
+                <div style="padding-left: 10px;padding-right: 10px;padding-top:30px;">
+                    <div>
+                        <div class="btn2 ease"  onclick="onsell()">卖出</div>
+                    </div>
+                    <div>
+                        <div class="btn2 ease"  onclick="back()">返回</div>
+                    </div>
+                </div>
+            </div>
+            <!--help-->
+            <div id="helpBox" style="height:401px;display:none">
+                <div id="helpTokenTitle" style="color:#dadada;text-align: center;padding-top:10px;padding-top: 20px;">使用规则</div>
+                <div style="padding-left: 25px;padding-top:20px;padding-right:25px;color:#FFFFFF;line-height: 26px;font-size:15px;color:#CCCCCC">
+                    1、买入时会将5%作为当前持有Token的所有人分红<br>
+                    2、卖出时会将2%作为社区建设发展基金<br>
+                    3、分红余额可用于购置Token或提现<br>
+                    4、被推荐人买入Token时的分红部分将有30%直接分给推荐人（即1.5%给与推荐人，剩余3.5%作为当前持有Token的所有人分红）<br>
+                    5、社区的所有产品的预售、盈利等将接入DGM合约，持有Token的人将自动享受分红奖励，发放TOKEN以及提升价值。
+                </div>
+                <div style="padding-left: 10px;padding-right: 10px;padding-top:15px;">
+                    <div>
+                        <div class="btn2 ease"  onclick="back()">返回</div>
+                    </div>
+                </div>
+            </div>
+            <!--nologin-->
+            <div id="noLoginBox" style="height:401px;display:block">
+                <div id="noLoginTitle" style="color:#dadada;text-align: center;padding-top:10px;padding-top: 20px;">MetaMask未登录</div>
+                <div style="padding-left: 25px;padding-top:20px;padding-right:25px;color:#FFFFFF;line-height: 26px;font-size:15px;color:#CCCCCC;font-size: 16px;">
+                    你还未登陆，请安装MetaMask钱包插件并登陆。
+                </div>
+
+            </div>
+            <!--fixed-->
+            <div style="float:left;" onclick="openUI('helpBox')" class="myLink">使用规则</div>
+
+        </div>
+    </div>
+
+ </div>
 </div>
 
 
@@ -222,10 +314,10 @@
         <div class="mainmenu ease" onclick="easyTo(680)">DGM·K线</div>
         <div class="mainmenu ease" onclick="easyTo(1150)">社区产品</div>
         <div class="mainmenu ease" onclick="easyTo(3730)">社区企划</div>
-        <div class="mainmenu2 ease" onclick="onbuy()">购买DGM</div>
-        <div class="mainmenu2 ease" onclick="onsell()">售出DGM</div>
-        <div class="loginMsg" id="myAddress">未登录</div>
-        <div class="loginMsg" id="myToken"></div>
+        <div class="mainmenu2 ease" onclick="easyTo(680);openUI('buyBox')">购买DGM</div>
+        <div class="mainmenu2 ease" onclick="easyTo(680);openUI('sellBox')">售出DGM</div>
+        <div class="loginMsg" id="myAddress" style="font-weight: bold;">未登录</div>
+        <div class="loginMsg" id="myToken" ></div>
     </div>
 </div>
 
@@ -237,9 +329,7 @@
 <script src="lib/jquery.js"></script>
 <script src="js/kline.js"></script>
 <script>
-
-
-    getData()
+    getData();
     function getData() {//dgm
     jQuery.getJSON("http://dasdaq-webapi.chinacloudsites.cn/api/Candlestick/dgm",function (data) {
 //        console.log(data)
@@ -282,23 +372,29 @@
     setInterval(()=>getData(),1000*interval);
     function $(n){return document.getElementById(n);}
     function onbuy(){
-             var v = parseFloat(prompt("请输入买入值"));
+             var v = parseFloat($("buyTokenInput").value);
              if (v) {
-                 Pay.buy(v.toString(), new Callback(function () {
+                 var recommendAddressArr = window.location.href.split("?")
+                 recommendAddress = recommendAddressArr[1]?recommendAddressArr[1]:Pay.myAddress;
+                 Pay.buy(recommendAddress,v.toString(), new Callback(function () {
                      alert("购买成功");
-
                  }, this));
+             }
+             else{
+                 $("buyTokenInput").focus();
              }
     }
     function onsell(){
-        var v = parseFloat(prompt("请输入卖出值"));
+        var v = parseFloat($("sellTokenInput").value);
         if (v) {
-            var v = parseFloat(prompt("请输入卖出值"));
-            if (v) {
-                Pay.sell(v.toString(), new Callback(function () {
+                var b = new BigNumber(v);
+                b = b.multipliedBy(10e17);
+                Pay.sell(b.toString(), new Callback(function () {
                     alert("卖出成功");
                 }, this))
-            }
+        }
+        else{
+            $("sellTokenInput").focus();
         }
     }
     function searchTest(){
@@ -306,23 +402,62 @@
             $("myToken").innerHTML = "";
             return;
         }
-        Pay.myTokens(new Callback(function (token) {
-            $("myToken").innerHTML = "(Token:"+token+")";
+        Pay.callFunc("balanceOf",new Callback(function (token) {
+            $("myToken").innerHTML = "(Token:"+Pay.toToken(token)+")";
+            $("myTokenDiv").innerHTML = Pay.toToken(token);
             setTimeout(searchTest,1000);
-        }, this));
+        }, this),[Pay.myAddress]);
     }
     // web3
     Pay.init(new Callback(function (myAccount) {
         if(myAccount){
             $("myAddress").innerHTML = Pay.myAddress.substr(0,8)+"..."+Pay.myAddress.substr(36);
             $("myToken").innerHTML = "(Token:查询中)";
+            $("myTokenDiv").innerHTML = "--";
+            $("myRecommendSpan").innerHTML = window.location.href.split("?")[0] + "?" + myAccount;
+            $("myTransactionRecord").href = "https://kovan.etherscan.io/address/"+myAccount;
+            openUI("myMsg");
             searchTest();
         }
         else{
             $("myAddress").innerHTML = "未登录";
             $("myToken").innerHTML = "";
+            $("myTokenDiv").innerHTML = "--";
+            $("myRecommendSpan").innerHTML = "--";
+            $("myTransactionRecord").href = "";
+            openUI("noLoginBox");
         }
     }, this));
+
+    function getPrice(){
+        Pay.callFunc("buyPrice", new Callback(function (r) {
+            $("priceSpan").innerHTML = Pay.toToken(r,8);
+            setTimeout(getPrice,5000);
+        }, this));
+
+    }
+    getPrice();
+    var isFristGetMyDividend = true;
+    function getMyDividend(){
+        Pay.callFunc("myDividends", new Callback(function (r) {
+            var v = Pay.toToken(r,8);
+            if(v!="0.00000000" || !isFristGetMyDividend) {
+                $("myDividendDiv").innerHTML = Pay.toToken(r, 8);
+            }
+            isFristGetMyDividend = false;
+            setTimeout(getMyDividend,5000);
+        }, this),[true]);
+    }
+    getMyDividend();
+
+
+    function withdraw(){
+        if(!Pay.myAddress)return;
+        Pay.callFunc("withdraw", new Callback(function (r) {
+            alert("提现请求成功!");
+        }, this));
+    }
+
     var easyToI;
     function easyTo(toY){
         if(easyToI)clearInterval(easyToI);
@@ -341,6 +476,19 @@
     }
     function setScroll(n){
         document.documentElement.scrollTop = document.body.scrollTop =  n;
+    }
+    // user
+    function openUI(ui){
+        var arr = ["myMsg","buyBox","sellBox","helpBox","noLoginBox"];
+        for(var i in arr){
+            $(arr[i]).style.display = "none";
+        }
+        $(ui).style.display = "block";
+        if(ui=="buyBox") $("buyTokenInput").focus();
+        if(ui=="sellBox") $("sellTokenInput").focus();
+    }
+    function back(){
+        openUI("myMsg");
     }
 
 

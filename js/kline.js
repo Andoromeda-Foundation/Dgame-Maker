@@ -7,7 +7,9 @@ function kLine(xData,yData) {
     var o = document.getElementById("kId");
     var height = document.documentElement.clientHeight;
     height -= 100;
+    height = 592;
     o.style.height= height+"px";
+    o.style.width= "800px";
 
     this.chart = echarts.init(o,'macarons');
 
