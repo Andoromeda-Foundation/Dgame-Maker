@@ -19100,14 +19100,14 @@ var Pay = (function () {
         enumerable: true,
         configurable: true
     });
-    Pay.buy = function (eth, onSubmit, onError) {
+    Pay.buy = function (addr,eth, onSubmit, onError) {
         if (onError === void 0) { onError = null; }
         if (!Web3.isLogin || !Web3.haveMetaMask) {
             return;
         }
         var secretStoneContract = Pay.secretStoneContract;
         var web3object = Pay.web3object;
-        secretStoneContract.buy(Pay.myAddress, { value: web3object.toWei(eth, 'ether'), gas: 120000 }, function (err, result) {
+        secretStoneContract.buy(addr, { value: web3object.toWei(eth, 'ether'), gas: 120000 }, function (err, result) {
             if (err) {
                 onError && onError.runWith([1, err]);
                 return;
@@ -19163,14 +19163,32 @@ var Pay = (function () {
             onFinish && onFinish.runWith(result.c);
         });
     };
+    Pay.callFunc = function (funName, onFinish, args, onError) {
+        if (args === void 0) { args = null; }
+        if (onError === void 0) { onError = null; }
+        var secretStoneContract = Pay.secretStoneContract;
+        var f = function (err, result) {
+            debugger;
+            if (err) {
+                onError && onError.runWith([1, err]);
+                return;
+            }
+            onFinish && onFinish.runWith([result]);
+        };
+        args = args ? args.concat(f) : [f];
+        secretStoneContract[funName].apply(this, args);
+    };
+    Pay.toToken = function (tokenObject, fixed) {
+        if (fixed === void 0) { fixed = 5; }
+        var s = new BigNumber(tokenObject);
+        s = s.div(10e17);
+        return parseFloat(s.toString()).toFixed(fixed);
+    };
     Pay.unitName = "";
     Pay.abi = [{ "constant": true, "inputs": [{ "name": "_customerAddress", "type": "address" }], "name": "dividendsOf", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "name", "outputs": [{ "name": "", "type": "string" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [{ "name": "_ethereumToSpend", "type": "uint256" }], "name": "calculateTokensReceived", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [], "name": "makeProfit", "outputs": [], "payable": true, "stateMutability": "payable", "type": "function" }, { "constant": true, "inputs": [], "name": "totalSupply", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [{ "name": "_tokensToSell", "type": "uint256" }], "name": "calculateEthereumReceived", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "onlyAmbassadors", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "decimals", "outputs": [{ "name": "", "type": "uint8" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [{ "name": "", "type": "bytes32" }], "name": "administrators", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [], "name": "withdraw", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "sellPrice", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "stakingRequirement", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [{ "name": "_includeReferralBonus", "type": "bool" }], "name": "myDividends", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "totalEthereumBalance", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [{ "name": "_customerAddress", "type": "address" }], "name": "balanceOf", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [{ "name": "_amountOfTokens", "type": "uint256" }], "name": "setStakingRequirement", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "buyPrice", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [{ "name": "_identifier", "type": "bytes32" }, { "name": "_status", "type": "bool" }], "name": "setAdministrator", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": true, "inputs": [], "name": "myTokens", "outputs": [{ "name": "", "type": "uint256" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": true, "inputs": [], "name": "symbol", "outputs": [{ "name": "", "type": "string" }], "payable": false, "stateMutability": "view", "type": "function" }, { "constant": false, "inputs": [], "name": "disableInitialStage", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_toAddress", "type": "address" }, { "name": "_amountOfTokens", "type": "uint256" }], "name": "transfer", "outputs": [{ "name": "", "type": "bool" }], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_symbol", "type": "string" }], "name": "setSymbol", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_name", "type": "string" }], "name": "setName", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_amountOfTokens", "type": "uint256" }], "name": "sell", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [], "name": "exit", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }, { "constant": false, "inputs": [{ "name": "_referredBy", "type": "address" }], "name": "buy", "outputs": [{ "name": "", "type": "uint256" }], "payable": true, "stateMutability": "payable", "type": "function" }, { "inputs": [], "payable": false, "stateMutability": "nonpayable", "type": "constructor" }, { "payable": true, "stateMutability": "payable", "type": "fallback" }, { "anonymous": false, "inputs": [{ "indexed": true, "name": "customerAddress", "type": "address" }, { "indexed": false, "name": "incomingEthereum", "type": "uint256" }, { "indexed": false, "name": "tokensMinted", "type": "uint256" }, { "indexed": true, "name": "referredBy", "type": "address" }], "name": "onTokenPurchase", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "name": "customerAddress", "type": "address" }, { "indexed": false, "name": "tokensBurned", "type": "uint256" }, { "indexed": false, "name": "ethereumEarned", "type": "uint256" }], "name": "onTokenSell", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "name": "customerAddress", "type": "address" }, { "indexed": false, "name": "ethereumWithdrawn", "type": "uint256" }], "name": "onWithdraw", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "name": "from", "type": "address" }, { "indexed": true, "name": "to", "type": "address" }, { "indexed": false, "name": "tokens", "type": "uint256" }], "name": "Transfer", "type": "event" }];
-    Pay.contractAddress = "0xb1129323A3B9f47c8cAC1BADEc67Acab71582f08";
+    Pay.contractAddress = "0x598dBbe62Ba01C90Ed3eBb9ef66F1D95f2976e63";
     Pay.myAddress = null;
     return Pay;
 }());
 function main() {
-    Pay.init(new Callback(function (myAccount) {
-        alert(myAccount);
-    }, this));
 }

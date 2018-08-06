@@ -59,7 +59,7 @@ body{
     font-size:14px;
     color:#FFFFFF;
     float:left;
-    padding-top:5px;
+    padding-top:0px;
     text-align: left;
     padding-left:10px;
 }
@@ -107,7 +107,7 @@ body{
     position: relative;
     width: 100%;
     background-color: #181b2a;
-    height: 480px;
+    height: 580px;
     margin: auto;
     color:#000000;
 }
@@ -305,4 +305,52 @@ body{
     height:200px;
     opacity: 0.9;
     padding-top:80px;
+}
+
+
+.btn{
+    background: url("../img/btn.png") no-repeat;
+    width: 157px;
+    height:43px;
+    text-align: center;
+    padding-top:10px;
+    font-weight: bold;
+    float:left;
+    cursor: pointer;
+}
+.btn:hover{
+    background: url("../img/btnMouseOver.png") no-repeat;
+}
+.btn:active{
+    background: url("../img/btnMouseDown.png") no-repeat;
+}
+
+.btn2{
+    background: url("../img/btn1.png") no-repeat;
+    width: 340px;
+    height:43px;
+    text-align: center;
+    padding-top:10px;
+    font-weight: bold;
+    float:left;
+    cursor: pointer;
+    color:#FFFFFF;
+}
+.btn2:hover{
+    background: url("../img/btn1MouseOver.png") no-repeat;
+}
+.btn2:active{
+    background: url("../img/btn1MouseDown.png") no-repeat;
+}
+
+.myLink{
+    cursor: pointer;
+    color: #CCC;
+    padding-left:10px;
+    padding-right:10px;
+    text-decoration: underline;
+}
+.myLink:hover{
+    cursor: pointer;
+    color: #FFF;
 }
