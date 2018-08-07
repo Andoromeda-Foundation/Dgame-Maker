@@ -337,13 +337,13 @@
     getData();
     function getData() {//dgm
     jQuery.getJSON("http://dasdaq-webapi.chinacloudsites.cn/api/Candlestick/dgm",function (data) {
-//        console.log(data)
+       console.log(data)
         if(data){
             if(data.code=="200"){
                 data = data.data.values;
                 var yData=[ // 开盘，收盘，最低，最高
                     {
-//                         value:[2320.26,2302.6,2287.3,2362.94],
+                         value:[data[0].opening,data[0].closing,data[0].min,data[0].max],
                         itemStyle: {
                             normal: {
                                 color0: 'blue',         // 阴线填充颜色
@@ -357,8 +357,8 @@
                             }
                         }
                     }];
-                var xData=[];
-                for(var i=0;i<data.length;i++){
+                var xData=[FormTime(data[0].time)];
+                for(var i=1;i<data.length;i++){
                     xData.push(FormTime(data[i].time))
                     var item=[data[i].opening,data[i].closing,data[i].min,data[i].max] // 开盘，收盘，最低，最高
                     yData.push(item);

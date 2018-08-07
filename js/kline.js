@@ -17,7 +17,7 @@ function kLine(xData,yData) {
         tooltip : {
             trigger: 'axis',
             formatter: function (params) {// 开盘，收盘，最低，最高
-                var res = "";//params[0].seriesName + ' ' + params[0].name;
+                var res = params[0].seriesName + ' ' + params[0].name;
                 res += '<br/>  开盘 : ' + params[0].value[1] + '  最高 : ' + params[0].value[4];
                 res += '<br/>  收盘 : ' + params[0].value[2] + '  最低 : ' + params[0].value[3];
                 return res;
@@ -60,8 +60,8 @@ function kLine(xData,yData) {
         ],
         series : [
             {
-                // value:[2320.26,2302.6,2287.3,2362.94],
-                name:'上证指数',
+                 // value:[0,0,0,0],
+                name:'日期',
                 type:'k',
                 barMaxWidth: 20,
                 itemStyle: {
