@@ -90,7 +90,7 @@ function kLine(data0) {
                 show: true
             }
         },
-   /*     dataZoom: [
+        dataZoom: [
             {
                 type: 'inside',
                 start: 50,
@@ -103,7 +103,7 @@ function kLine(data0) {
                 start: 50,
                 end: 100
             }
-        ],*/
+        ],
         series: [
             {
                 // name: '日期',
@@ -195,7 +195,7 @@ function kLine(data0) {
                     ]
                 }
             },
-            {
+           /* {
                 name: 'hour',
                 type: 'line',
                 data: calculateMA(1),
@@ -212,7 +212,7 @@ function kLine(data0) {
                 lineStyle: {
                     normal: {opacity: 0.5}
                 }
-            },
+            },*/
            /* {
                 name: 'MA20',
                 type: 'line',
@@ -241,7 +241,7 @@ function kLine(data0) {
 
     this.chart.setOption(option);
 }
-var kApi="http://dasdaq-webapi.chinacloudsites.cn/api/Candlestick/dgm?Interval=1h&Begin="+getBeforeDate(3)+"T00:00:00Z&End="+getBeforeDate(0)+"T00:00:00Z";
+var kApi="http://dasdaq-webapi.chinacloudsites.cn/api/Candlestick/dgm?Interval=1h&Begin="+getBeforeDate(3)+"T00:00:00Z&End="+getBeforeDate(2)+"T00:00:00Z";
 function getBeforeDate(n) {
     var n = n;
     var d = new Date();
