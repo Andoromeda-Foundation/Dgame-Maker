@@ -144,7 +144,13 @@
 </div>
 
 
-
+<div id="kx2">
+    <div class="centerContent">
+        <div id="kId2" style="margin: auto;width: 800px;padding-top:10px;float:left;">
+            <!--<img src="img/k.png" width="1300"/>-->
+        </div>
+    </div>
+</div>
 
 
 <div id="projectList">
@@ -333,11 +339,12 @@
 <script src="lib/echarts/macarons.js"></script>
 <script src="lib/jquery.js"></script>
 <script src="js/kline.js"></script>
+<script src="js/kline2.js"></script>
 <script>
     getData();
-    function getData() {//dgm
-    jQuery.getJSON("http://dasdaq-webapi.chinacloudsites.cn/api/Candlestick/dgm",function (data) {
-       console.log(data)
+    function getData() {
+    jQuery.getJSON(kApi,function (data) {
+//       console.log(data)
         if(data){
             if(data.code=="200"){
                 data = data.data.values;
@@ -357,13 +364,20 @@
                             }
                         }
                     }];
-                var xData=[FormTime(data[0].time)];
+//                var xData=[FormTime(data[0].time)];
+             /*   var xData=[data[0].time.replace("T","").replace("Z","")];
                 for(var i=1;i<data.length;i++){
-                    xData.push(FormTime(data[i].time))
+                    xData.push(data[i].time.replace("T","").replace("Z",""))
                     var item=[data[i].opening,data[i].closing,data[i].min,data[i].max] // 开盘，收盘，最低，最高
                     yData.push(item);
+                }*/
+//                kLine(xData,yData);
+                var dt=[];
+                for(var i=0;i<data.length;i++){
+                    var item=[data[i].time.replace("T"," ").replace("Z",""),data[i].opening,data[i].closing,data[i].min,data[i].max] // 开盘，收盘，最低，最高
+                    dt.push(item);
                 }
-                kLine(xData,yData);
+                kLine(dt);
             }else {
                 alert("Service error")
             }
@@ -503,7 +517,7 @@
     window.onresize=onPageResize;
     function onPageResize(){
         var w = document.documentElement.clientWidth;
-        var resizeArr = ["title","bodybg","kx","projectList","canvasBuilder","underworldbg","roadmap","recite","contact","underworld"];
+        var resizeArr = ["title","bodybg","kx","kx2","projectList","canvasBuilder","underworldbg","roadmap","recite","contact","underworld"];
         if(w<1300){
             for(var i in resizeArr){
                 document.getElementById(resizeArr[i]).style.width = "1300px";

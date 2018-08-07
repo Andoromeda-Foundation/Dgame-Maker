@@ -101,6 +101,7 @@ function FormTime(time) {
     if(time){
         var times=time.split("T");
         time = times[0];
+        console.log(time)
         return time;
     }else {
         return "";
