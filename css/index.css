@@ -354,3 +354,23 @@ body{
     cursor: pointer;
     color: #FFF;
 }
+
+.toggle-button-outer {
+    border: 1px solid #6ca9fe;
+    display: inline-block;
+}
+
+.toggle-button-item {
+    width: 100px;
+    padding: 5px 8px;
+    font-size: 12px;
+    color: #6ca9fe;
+    display: inline-block;
+    text-align: center;
+    font-family: 'Microsoft YaHei'
+}
+
+.toggle-button-item.active {
+    background: #6ca9fe;
+    color: #fff;
+}
