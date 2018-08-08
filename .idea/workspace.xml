@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e8e8cd2d-2d74-42c1-9500-d42ee9c347b4" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/mockline.js" afterPath="$PROJECT_DIR$/js/mockline.js" />
-    </list>
+    <list default="true" id="e8e8cd2d-2d74-42c1-9500-d42ee9c347b4" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -34,17 +30,10 @@
         <entry file="file://$PROJECT_DIR$/js/mockline.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="23">
-              <caret line="134" column="10" lean-forward="false" selection-start-line="134" selection-start-column="10" selection-end-line="134" selection-end-column="10" />
+              <caret line="134" column="9" lean-forward="false" selection-start-line="134" selection-start-column="9" selection-end-line="134" selection-end-column="9" />
               <folding>
                 <element signature="e#194#4689#0" expanded="false" />
                 <element signature="n#!!block;n#calculateMA#0" expanded="false" />
-                <marker date="1533688219100" expanded="true" signature="5396:10620" ph="{...}" />
-                <marker date="1533688219100" expanded="true" signature="5473:5564" ph="{&quot;trigger&quot;: 'axis'...}" />
-                <marker date="1533688219100" expanded="true" signature="5521:5558" ph="{&quot;type&quot;: 'cross'...}" />
-                <marker date="1533688219100" expanded="true" signature="5653:5725" ph="{&quot;left&quot;: '10%'...}" />
-                <marker date="1533688219100" expanded="true" signature="5738:5996" ph="{&quot;type&quot;: 'category'...}" />
-                <marker date="1533688219100" expanded="true" signature="6009:6091" ph="{...}" />
-                <marker date="1533688219100" expanded="true" signature="6051:6085" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -264,12 +253,12 @@
       <updated>1533555045209</updated>
       <workItem from="1533555046636" duration="3992000" />
       <workItem from="1533640311359" duration="14391000" />
-      <workItem from="1533687248395" duration="1531000" />
+      <workItem from="1533687248395" duration="1569000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19914000" />
+    <option name="totallyTimeSpent" value="19952000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-10" y="5" width="1378" height="780" extended-state="0" />
@@ -453,17 +442,10 @@
     <entry file="file://$PROJECT_DIR$/js/mockline.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="23">
-          <caret line="134" column="10" lean-forward="false" selection-start-line="134" selection-start-column="10" selection-end-line="134" selection-end-column="10" />
+          <caret line="134" column="9" lean-forward="false" selection-start-line="134" selection-start-column="9" selection-end-line="134" selection-end-column="9" />
           <folding>
             <element signature="e#194#4689#0" expanded="false" />
             <element signature="n#!!block;n#calculateMA#0" expanded="false" />
-            <marker date="1533688219100" expanded="true" signature="5396:10620" ph="{...}" />
-            <marker date="1533688219100" expanded="true" signature="5473:5564" ph="{&quot;trigger&quot;: 'axis'...}" />
-            <marker date="1533688219100" expanded="true" signature="5521:5558" ph="{&quot;type&quot;: 'cross'...}" />
-            <marker date="1533688219100" expanded="true" signature="5653:5725" ph="{&quot;left&quot;: '10%'...}" />
-            <marker date="1533688219100" expanded="true" signature="5738:5996" ph="{&quot;type&quot;: 'category'...}" />
-            <marker date="1533688219100" expanded="true" signature="6009:6091" ph="{...}" />
-            <marker date="1533688219100" expanded="true" signature="6051:6085" ph="{...}" />
           </folding>
         </state>
       </provider>

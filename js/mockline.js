@@ -132,7 +132,7 @@ function calculateMA(dayCount) {
 
 
 
-option = k{
+option = {
    /* title: {
         text: '上证指数',
         left: 0
