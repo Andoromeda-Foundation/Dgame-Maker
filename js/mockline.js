@@ -132,11 +132,11 @@ function calculateMA(dayCount) {
 
 
 
-option = {
-    title: {
+option = k{
+   /* title: {
         text: '上证指数',
         left: 0
-    },
+    },*/
     tooltip: {
         trigger: 'axis',
         axisPointer: {

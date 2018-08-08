@@ -44,7 +44,13 @@
 
 <div id="kx">
  <div class="centerContent">
-    <div id="kId" style="margin: auto;width: 800px;padding-top:10px;float:left;">
+     <div style="margin-left: 10%">
+         <button type="button" onclick="btnFun('m')" >分钟</button>
+         <button type="button" onclick="btnFun('h')" >小时</button>
+         <button type="button"  onclick="btnFun('d')">天</button>
+     </div>
+
+    <div id="kId" style="margin: auto;width: 800px;float:left;">
         <!--<img src="img/k.png" width="1300"/>-->
     </div>
    <!--  <div style="float: left;">
@@ -342,8 +348,11 @@
 <!--<script src="js/kline2.js"></script>-->
 <script src="js/mockline.js"></script>
 <script>
+    function btnFun(flag){
+        kLine(flag)
+    }
     kLine();
-    getData();
+//    getData();
     function getData() {
     jQuery.getJSON(kApi,function (data) {
 //       console.log(data)
