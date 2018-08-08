@@ -45,9 +45,11 @@
 <div id="kx">
  <div class="centerContent">
      <div style="margin-left: 10%">
-         <button type="button" onclick="btnFun('m')" >分钟</button>
-         <button type="button" onclick="btnFun('h')" >小时</button>
-         <button type="button"  onclick="btnFun('d')">天</button>
+        <div class="toggle-button-outer">
+            <div id="perDay" class="toggle-button-item active" onclick="btnFun('d')">30天</div>
+            <div id="perHour" class="toggle-button-item" onclick="btnFun('h')">24小时</div>
+            <div id="perMin" class="toggle-button-item" onclick="btnFun('m')">60分钟</div>
+        </div>
      </div>
 
     <div id="kId" style="margin: auto;width: 800px;float:left;">
@@ -350,6 +352,14 @@
 <script>
     function btnFun(flag){
         kLine(flag)
+            $('.toggle-button').removeClass('active');
+        if (flag === "m") {
+            $('#perMin').addClass('active');
+        } else if (flag === "h") {
+            $('#perHour').addClass('active');
+        } else {
+            $('#perDay').addClass('active');
+        }
     }
     kLine("d");
 //    getData();
