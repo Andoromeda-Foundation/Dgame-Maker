@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e8e8cd2d-2d74-42c1-9500-d42ee9c347b4" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/mockline.js" afterPath="$PROJECT_DIR$/js/mockline.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -32,14 +31,10 @@
       <file leaf-file-name="mockline.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/mockline.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="290">
-              <caret line="335" column="14" lean-forward="true" selection-start-line="335" selection-start-column="14" selection-end-line="335" selection-end-column="14" />
+            <state relative-caret-position="244">
+              <caret line="336" column="0" lean-forward="true" selection-start-line="336" selection-start-column="0" selection-end-line="336" selection-end-column="0" />
               <folding>
-                <element signature="e#190#4685#0" expanded="false" />
-                <element signature="e#4707#9208#0" expanded="false" />
-                <element signature="e#9231#13745#0" expanded="false" />
                 <element signature="n#!!block;n#calculateMA#0" expanded="false" />
-                <element signature="e#14894#20840#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -101,6 +96,7 @@
       <find>helpTokenTitle</find>
       <find>使用规则</find>
       <find>dayCount</find>
+      <find>2013</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -259,12 +255,12 @@
       <updated>1533555045209</updated>
       <workItem from="1533555046636" duration="3992000" />
       <workItem from="1533640311359" duration="14391000" />
-      <workItem from="1533687248395" duration="3562000" />
+      <workItem from="1533687248395" duration="4640000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21945000" />
+    <option name="totallyTimeSpent" value="23023000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-10" y="5" width="1378" height="780" extended-state="0" />
@@ -447,14 +443,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/mockline.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="335" column="14" lean-forward="true" selection-start-line="335" selection-start-column="14" selection-end-line="335" selection-end-column="14" />
+        <state relative-caret-position="244">
+          <caret line="336" column="0" lean-forward="true" selection-start-line="336" selection-start-column="0" selection-end-line="336" selection-end-column="0" />
           <folding>
-            <element signature="e#190#4685#0" expanded="false" />
-            <element signature="e#4707#9208#0" expanded="false" />
-            <element signature="e#9231#13745#0" expanded="false" />
             <element signature="n#!!block;n#calculateMA#0" expanded="false" />
-            <element signature="e#14894#20840#0" expanded="false" />
           </folding>
         </state>
       </provider>
