@@ -339,8 +339,10 @@
 <script src="lib/echarts/macarons.js"></script>
 <script src="lib/jquery.js"></script>
 <!--<script src="js/kline.js"></script>-->
-<script src="js/kline2.js"></script>
+<!--<script src="js/kline2.js"></script>-->
+<script src="js/mockline.js"></script>
 <script>
+    kLine();
     getData();
     function getData() {
     jQuery.getJSON(kApi,function (data) {
@@ -377,7 +379,7 @@
                     var item=[data[i].time.replace("T"," ").replace("Z",""),data[i].opening,data[i].closing,data[i].min,data[i].max] // 开盘，收盘，最低，最高
                     dt.push(item);
                 }
-                kLine(dt);
+//                kLine(dt);
             }else {
                 alert("Service error")
             }
