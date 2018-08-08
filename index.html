@@ -44,7 +44,7 @@
 
 <div id="kx">
  <div class="centerContent">
-     <div style="margin-left: 10%">
+     <div style="width:800px; text-align: center;">
         <div class="toggle-button-outer">
             <div id="perDay" class="toggle-button-item active" onclick="btnFun('d')">30天</div>
             <div id="perHour" class="toggle-button-item" onclick="btnFun('h')">24小时</div>
@@ -351,15 +351,15 @@
 <script src="js/mockline.js"></script>
 <script>
     function btnFun(flag){
-        kLine(flag)
-            $('.toggle-button').removeClass('active');
+        jQuery('.toggle-button-item').removeClass('active');
         if (flag === "m") {
-            $('#perMin').addClass('active');
+            jQuery('#perMin').addClass('active');
         } else if (flag === "h") {
-            $('#perHour').addClass('active');
+            jQuery('#perHour').addClass('active');
         } else {
-            $('#perDay').addClass('active');
+            jQuery('#perDay').addClass('active');
         }
+        kLine(flag)
     }
     kLine("d");
 //    getData();
@@ -477,9 +477,9 @@
         }, this));
 
     }
-    getPrice();
-    var isFristGetMyDividend = true;
-    function getMyDividend(){
+    try {
+        getPrice();
+        var isFristGetMyDividend = true;
         Pay.callFunc("myDividends", new Callback(function (r) {
             var v = Pay.toToken(r,8);
             if(v!="0.00000000" || !isFristGetMyDividend) {
@@ -488,8 +488,9 @@
             isFristGetMyDividend = false;
             setTimeout(getMyDividend,5000);
         }, this),[true]);
+    } catch (ex) {
+        console.warn(ex.toString());
     }
-    getMyDividend();
 
 
     function withdraw(){
