@@ -46,9 +46,9 @@
  <div class="centerContent">
      <div style="width:800px; text-align: center;">
         <div class="toggle-button-outer">
-            <div id="perDay" class="toggle-button-item active" onclick="btnFun('d')">30天</div>
-            <div id="perHour" class="toggle-button-item" onclick="btnFun('h')">24小时</div>
-            <div id="perMin" class="toggle-button-item" onclick="btnFun('m')">60分钟</div>
+            <div id="perDay" class="toggle-button-item active" onclick="btnFun('d')">天</div>
+            <div id="perHour" class="toggle-button-item" onclick="btnFun('h')">小时</div>
+            <div id="perMin" class="toggle-button-item" onclick="btnFun('m')">分钟</div>
         </div>
      </div>
 
@@ -347,58 +347,55 @@
 <script src="lib/echarts/macarons.js"></script>
 <script src="lib/jquery.js"></script>
 <!--<script src="js/kline.js"></script>-->
-<!--<script src="js/kline2.js"></script>-->
+<script src="js/kline2.js"></script>
 <script src="js/mockline.js"></script>
 <script>
+
+    console.info(getBeforeHour(24))
+    console.log(getBeforeHour(0))
+    console.log(getBeforeMinute(60))
+    console.log(getBeforeMinute(0))
+    var kApi="http://dasdaq-webapi.chinacloudsites.cn/api/Candlestick/dgm?Interval=12h&Begin="+getBeforeDate(30)+"T00:00:00Z&End="+getBeforeDate(0)+"T23:59:59Z";
     function btnFun(flag){
+        var inval = "12h";
+        var begin = getBeforeDate(30)+"T00:00:00Z";
+        var end = getBeforeDate(0)+"T24:00:00Z"
         jQuery('.toggle-button-item').removeClass('active');
         if (flag === "m") {
             jQuery('#perMin').addClass('active');
+            inval = "1m";
+            begin = getBeforeHour(3)
+            end = getBeforeHour(2)
         } else if (flag === "h") {
             jQuery('#perHour').addClass('active');
+            inval = "1h";
+            begin = getBeforeDate(1)+"T00:00:00Z";
+            end = getBeforeDate(0)+"T24:00:00Z";
         } else {
             jQuery('#perDay').addClass('active');
+            inval = "1d";
+            begin = getBeforeDate(30)+"T00:00:00Z";
+            end = getBeforeDate(0)+"T24:00:00Z"
         }
-        kLine(flag)
+        kApi="http://dasdaq-webapi.chinacloudsites.cn/api/Candlestick/dgm?Interval="+inval+"&Begin="+begin+"&End="+end;
+//        getData(kApi)   product
+        kLine(flag);//mock
     }
-    kLine("d");
-//    getData();
-    function getData() {
+        kLine("m"); //mock
+//    getData(kApi);  product
+    function getData(kApi) {
     jQuery.getJSON(kApi,function (data) {
 //       console.log(data)
         if(data){
             if(data.code=="200"){
                 data = data.data.values;
-                var yData=[ // 开盘，收盘，最低，最高
-                    {
-                         value:[data[0].opening,data[0].closing,data[0].min,data[0].max],
-                        itemStyle: {
-                            normal: {
-                                color0: 'blue',         // 阴线填充颜色
-                                lineStyle: {
-                                    width: 3,
-                                    color0: 'blue'      // 阴线边框颜色
-                                }
-                            },
-                            emphasis: {
-                                color0: 'blue'          // 阴线填充颜色
-                            }
-                        }
-                    }];
-//                var xData=[FormTime(data[0].time)];
-             /*   var xData=[data[0].time.replace("T","").replace("Z","")];
-                for(var i=1;i<data.length;i++){
-                    xData.push(data[i].time.replace("T","").replace("Z",""))
-                    var item=[data[i].opening,data[i].closing,data[i].min,data[i].max] // 开盘，收盘，最低，最高
-                    yData.push(item);
-                }*/
-//                kLine(xData,yData);
                 var dt=[];
                 for(var i=0;i<data.length;i++){
-                    var item=[data[i].time.replace("T"," ").replace("Z",""),data[i].opening,data[i].closing,data[i].min,data[i].max] // 开盘，收盘，最低，最高
+//                    var item=[data[i].time.replace("T"," ").replace("Z",""),data[i].opening,data[i].closing,data[i].min,data[i].max] // 开盘，收盘，最低，最高
+                    var item=[data[i].time,data[i].opening,data[i].closing,data[i].min,data[i].max]
                     dt.push(item);
                 }
-//                kLine(dt);
+                kLine(dt);
             }else {
                 alert("Service error")
             }

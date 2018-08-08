@@ -156,7 +156,7 @@ function kLine(data0) {
                         }
                     }
                 },*/
-                markLine: {
+              /*  markLine: {
                     symbol: ['none', 'none'],
                     data: [
                         [
@@ -193,7 +193,7 @@ function kLine(data0) {
                             valueDim: 'close'
                         }
                     ]
-                }
+                }*/
             },
            /* {
                 name: 'hour',
@@ -241,7 +241,6 @@ function kLine(data0) {
 
     this.chart.setOption(option);
 }
-var kApi="http://dasdaq-webapi.chinacloudsites.cn/api/Candlestick/dgm?Interval=1h&Begin="+getBeforeDate(3)+"T00:00:00Z&End="+getBeforeDate(2)+"T00:00:00Z";
 function getBeforeDate(n) {
     var n = n;
     var d = new Date();
@@ -262,4 +261,52 @@ function getBeforeDate(n) {
     day = d.getDate();
     s = year + "-" + (mon < 10 ? ('0' + mon) : mon) + "-" + (day < 10 ? ('0' + day) : day);
     return s;
+}
+
+function getBeforeHour(n) {
+    var currDate = new Date();
+    var beforehour=currDate.getTime()-n*60*60*1000;
+    var date=new Date(beforehour)
+    return date.toISOString()
+}
+
+function getBeforeMinute(n) {
+    var currDate = new Date();
+    var beforehour=currDate.getTime()-n*60*1000;
+    var date=new Date(beforehour)
+    return date.toISOString()
+}
+
+var byTime = [365*24*60*60*1000,24*60*60*1000,60*60*1000,60*1000,1000];
+var unit = ["年","天","小时","分钟","秒钟"];
+function str(atime) {
+
+    var ct = new Date().getTime - atime.getTime();
+    if (ct < 0) {
+        return "瞎糊闹！"
+    }
+
+    var sb = [];
+    for (var i = 0; i < byTime.length; i++) {
+        if (ct < byTime[i]) {
+            continue;
+        }
+        var temp = Math.floor(ct / byTime[i]);
+        ct = ct % byTime[i];
+        if (temp > 0) {
+            sb.push(temp + unit[i]);
+        }
+
+
+        /*一下控制最多输出几个时间单位：
+         一个时间单位如：N分钟前
+         两个时间单位如：M分钟N秒前
+         三个时间单位如：M年N分钟X秒前
+         以此类推
+         */
+        if (sb.length >= 1) {
+            break;
+        }
+    }
+    document.write(sb.join("") + "前");
 }
